@@ -61,12 +61,14 @@
 
 .currency-dropdown-menu {
   border: 1px solid rgba(148, 163, 184, 0.4);
+  overflow: hidden;
 }
 
 .currency-dropdown-item {
   display: block;
   font-weight: 500;
   transition: all 0.2s ease;
+  line-height: 1.2;
 }
 
 .currency-dropdown-item:hover {

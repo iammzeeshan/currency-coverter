@@ -80,16 +80,15 @@ function App() {
 
   const dropdownMenuStyle = {
     position: 'absolute',
-    left: 0,
     right: 0,
-    top: 'calc(100% + 0.35rem)',
-    width: '100%',
-    maxHeight: '8.5rem',
+    bottom: 'calc(100% + 0.2rem)',
+    width: '7rem',
+    maxHeight: '7.5rem',
     overflowY: 'auto',
     backgroundColor: '#ffffff',
     border: '1px solid #d1d5db',
     borderRadius: '0.75rem',
-    boxShadow: '0 12px 30px rgba(15, 23, 42, 0.12)',
+    boxShadow: '0 10px 24px rgba(15, 23, 42, 0.12)',
     zIndex: 20
   }
 
@@ -97,8 +96,8 @@ function App() {
     width: '100%',
     border: 'none',
     background: 'transparent',
-    padding: '0.5rem 0.75rem',
-    textAlign: 'left',
+    padding: '0.45rem 0.5rem',
+    textAlign: 'center',
     fontSize: '0.9rem',
     color: '#111827',
     cursor: 'pointer',
@@ -156,7 +155,7 @@ function App() {
 
                 <div
                   className='currency-select-wrapper'
-                  style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', zIndex: 10, width: '7.5rem' }}
+                  style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', zIndex: 10, width: '6.2rem' }}
                 >
                   <button
                     type='button'
@@ -225,7 +224,7 @@ function App() {
 
                 <div
                   className='currency-select-wrapper'
-                  style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', zIndex: 10, width: '7.5rem' }}
+                  style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', zIndex: 10, width: '6.2rem' }}
                 >
                   <button
                     type='button'
