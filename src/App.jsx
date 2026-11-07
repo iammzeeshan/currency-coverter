@@ -4,15 +4,37 @@ import useCurrencyInfo from './hook/UseCurrencyInfo'
 import './App.css'
 
 function App() {
-  const [amount, setamount] = useState(0)
+  const [amount, setamount] = useState(null)
   const [from, setFrom] = useState("usd")
   const [to, setTo] = useState("inr")
-  const [convertedAmount, setConvertedAmount] = useState(0)
+  const [convertedAmount, setConvertedAmount] = useState(null)
 
-  const currencyInfo = useCurrencyInfo(from)
+  const currencyInfo = useCurrencyInfo()
 
-  const options = Object.keys(currencyInfo)
+  const options = Object.keys(currencyInfo ?? {})
 
+  const swap = () => {
+    setFrom(to)
+    setTo(from)
+    setConvertedAmount(amount)
+    setamount(convertedAmount)
+  }
+
+  const handleSwap = (e) => {
+    e.preventDefault()
+    swap()
+  }
+
+  const convert = () => {
+    const numericAmount = Number(amount) || 0
+    const rate = currencyInfo?.[to] ?? 0
+    setConvertedAmount(numericAmount * rate)
+  }
+
+  const handleConvert = (e) => {
+    e.preventDefault()
+    convert()
+  }
 
   const selectStyle = {
     border: 'none',
@@ -60,7 +82,7 @@ function App() {
           <div className='convert-boxes'>
             <div className='currency-group'>
               <div className='form-box bg-white h-20 rounded-2xl' style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: '0.75rem 1rem', position: 'relative' }}>
-                <label className='currency-label text-gray-400 pb-8'>From</label>
+                <label className='currency-label text-gray-400 pb-8'>FROM</label>
                 <input
                   className='bg-white text-black form'
                   type='text'
@@ -87,7 +109,11 @@ function App() {
               </div>
             </div>
 
-            <button className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-500 py-3 px-5 rounded-lg font-bold border-4 border-white z-12">
+            <button
+              type='button'
+              onClick={handleSwap}
+              className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-500 py-3 px-5 rounded-lg font-bold border-4 border-white z-12"
+            >
               Swap
             </button>
 
@@ -120,7 +146,7 @@ function App() {
               </div>
             </div>
           </div>
-          <button className='bg-blue-600 py-3 px-8 mt-5 rounded-sm'>Convert {from.toUpperCase()} To {to.toUpperCase()}</button>
+          <button type='button' onClick={handleConvert} className='bg-blue-600 py-3 px-8 mt-5 rounded-sm uppercase'>Convert {from} to {to}</button>
         </section>
       </div>
     </main>
