@@ -1,13 +1,14 @@
+
 import React, { useState } from 'react'
 import { InputBox } from './components'
 import useCurrencyInfo from './hook/UseCurrencyInfo'
 import './App.css'
 
 function App() {
-  const [amount, setamount] = useState(null)
+  const [amount, setamount] = useState("")
   const [from, setFrom] = useState("usd")
   const [to, setTo] = useState("inr")
-  const [convertedAmount, setConvertedAmount] = useState(null)
+  const [convertedAmount, setConvertedAmount] = useState("")
 
   const currencyInfo = useCurrencyInfo(from)
 
@@ -26,9 +27,15 @@ function App() {
   }
 
   const convert = () => {
-    const numericAmount = Number(amount) || 0
-    const rate = currencyInfo?.[to] ?? 0
-    setConvertedAmount(numericAmount * rate)
+    const numericAmount = Number(amount)
+    const rate = currencyInfo?.[to]
+
+    if (amount === "" || !rate) {
+      setConvertedAmount("")
+      return
+    }
+
+    setConvertedAmount((numericAmount * rate).toFixed(2))
   }
 
   const handleConvert = (e) => {
@@ -79,20 +86,34 @@ function App() {
       <div className='app-overlay'>
         <section className='currency-card'>
           <p className='eyebrow'>Live Currency Converter</p>
+
           <div className='convert-boxes'>
+
             <div className='currency-group'>
-              <div className='form-box bg-white h-20 rounded-2xl' style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: '0.75rem 1rem', position: 'relative' }}>
-                <label className='currency-label text-gray-400 pb-8'>FROM</label>
+              <div className='form-box bg-white h-20 rounded-2xl'
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-end',
+                  justifyContent: 'space-between',
+                  padding: '0.75rem 1rem',
+                  position: 'relative'
+                }}>
+
+                <label className='currency-label text-gray-400 pb-8'>
+                  FROM
+                </label>
+
                 <input
                   className='bg-white text-black form'
-                  type='text'
-                  inputMode="numeric"
+                  type='number'
+                  inputMode="decimal"
                   placeholder='0'
                   min="0"
                   value={amount}
                   onChange={(e) => setamount(e.target.value)}
                   style={inputStyle}
                 />
+
                 <select
                   className='currency-select'
                   value={from}
@@ -118,18 +139,28 @@ function App() {
             </button>
 
             <div className='currency-group'>
-              <div className='to-box bg-white h-20 rounded-2xl mt-4' style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: '0.75rem 1rem', position: 'relative' }}>
-                <label className='currency-label text-gray-400 pb-8'>To</label>
+              <div className='to-box bg-white h-20 rounded-2xl mt-4'
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-end',
+                  justifyContent: 'space-between',
+                  padding: '0.75rem 1rem',
+                  position: 'relative'
+                }}>
+
+                <label className='currency-label text-gray-400 pb-8'>
+                  To
+                </label>
+
                 <input
                   className='bg-white text-black to'
                   type='text'
-                  inputMode="numeric"
                   placeholder='0'
-                  min="0"
-                  value={convertedAmount}
+                  value={convertedAmount ?? ""}
                   readOnly
                   style={inputStyle}
                 />
+
                 <select
                   className='currency-select'
                   value={to}
@@ -145,8 +176,17 @@ function App() {
                 </select>
               </div>
             </div>
+
           </div>
-          <button type='button' onClick={handleConvert} className='bg-blue-600 py-3 px-8 mt-5 rounded-sm uppercase'>Convert {from} to {to}</button>
+
+          <button
+            type='button'
+            onClick={handleConvert}
+            className='bg-blue-600 py-3 px-8 mt-5 rounded-sm uppercase'
+          >
+            Convert {from} to {to}
+          </button>
+
         </section>
       </div>
     </main>
@@ -154,3 +194,4 @@ function App() {
 }
 
 export default App
+
