@@ -126,6 +126,19 @@ function App() {
                   <option value='pkr'>PKR</option>
                   <option value='inr'>INR</option>
                   <option value='aed'>AED</option>
+                  <option value='cny'>CNY</option>
+                  <option value='npr'>NPR</option>
+                  <option value='bdt'>BDT</option>
+                  <option value='kwd'>KWD</option>
+                  <option value='cad'>CAD</option>
+                  <option value='sar'>SAR</option>
+                  <option value='sgd'>SGD</option>
+                  <option value='aud'>AUD</option>
+                  <option value='brl'>BRL</option>
+                  <option value='mxn'>MXN</option>
+                  <option value='chf'>CHF</option>
+                  <option value='zar'>ZAR</option>
+                  <option value='jpy'>JPY</option>
                 </select>
               </div>
             </div>
@@ -173,6 +186,21 @@ function App() {
                   <option value='gbp'>GBP</option>
                   <option value='inr'>INR</option>
                   <option value='aed'>AED</option>
+                  <option value='aed'>CNY</option>
+                  <option value='aed'>AED</option>
+                  <option value='cny'>CNY</option>
+                  <option value='npr'>NPR</option>
+                  <option value='bdt'>BDT</option>
+                  <option value='kwd'>KWD</option>
+                  <option value='cad'>CAD</option>
+                  <option value='sar'>SAR</option>
+                  <option value='sgd'>SGD</option>
+                  <option value='aud'>AUD</option>
+                  <option value='brl'>BRL</option>
+                  <option value='mxn'>MXN</option>
+                  <option value='chf'>CHF</option>
+                  <option value='zar'>ZAR</option>
+                  <option value='jpy'>JPY</option>
                 </select>
               </div>
             </div>
