@@ -1,0 +1,58 @@
+.app-shell {
+  min-height: 100vh;
+  background-image: url('./assets/bg-currency.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: grid;
+  place-items: center;
+}
+
+.app-overlay {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: rgba(10, 14, 28, 0.45);
+}
+
+.currency-card {
+  width: min(560px, 90%);
+  padding: 3rem 2.5rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #fff;
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.currency-card h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.2;
+}
+
+.from {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Hide number input arrows */
+.to .from ::-webkit-inner-spin-button,
+.to .from ::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.to .from {
+  appearance: textfield;
+}
