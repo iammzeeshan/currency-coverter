@@ -64,11 +64,15 @@ function App() {
     appearance: 'none',
     WebkitAppearance: 'none',
     MozAppearance: 'none',
-    padding: '0.35rem 2rem 0.35rem 0.5rem',
-    textAlign: 'right',
+    padding: '0.35rem 0.5rem',
+    textAlign: 'center',
     cursor: 'pointer',
     position: 'relative',
     zIndex: 1,
+    width: '100%',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'calc(100% - 0.5rem) center',
     backgroundSize: '1rem 1rem'
@@ -76,10 +80,11 @@ function App() {
 
   const dropdownMenuStyle = {
     position: 'absolute',
+    left: 0,
     right: 0,
     top: 'calc(100% + 0.35rem)',
-    width: '8rem',
-    maxHeight: '10rem',
+    width: '100%',
+    maxHeight: '8.5rem',
     overflowY: 'auto',
     backgroundColor: '#ffffff',
     border: '1px solid #d1d5db',
@@ -96,7 +101,8 @@ function App() {
     textAlign: 'left',
     fontSize: '0.9rem',
     color: '#111827',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    transition: 'all 0.2s ease'
   }
 
   const inputStyle = {
@@ -150,7 +156,7 @@ function App() {
 
                 <div
                   className='currency-select-wrapper'
-                  style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
+                  style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', zIndex: 10, width: '7.5rem' }}
                 >
                   <button
                     type='button'
@@ -165,19 +171,17 @@ function App() {
                   </button>
 
                   {isFromOpen && (
-                    <div style={dropdownMenuStyle}>
+                    <div className='currency-dropdown-menu' style={dropdownMenuStyle}>
                       {options.map((currency) => (
                         <button
                           key={currency}
                           type='button'
+                          className={`currency-dropdown-item ${currency === from ? 'active' : ''}`}
                           onClick={() => {
                             setFrom(currency)
                             setIsFromOpen(false)
                           }}
-                          style={{
-                            ...dropdownItemStyle,
-                            background: currency === from ? '#e0f2fe' : 'transparent'
-                          }}
+                          style={dropdownItemStyle}
                         >
                           {currency.toUpperCase()}
                         </button>
@@ -221,7 +225,7 @@ function App() {
 
                 <div
                   className='currency-select-wrapper'
-                  style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
+                  style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', zIndex: 10, width: '7.5rem' }}
                 >
                   <button
                     type='button'
@@ -236,19 +240,17 @@ function App() {
                   </button>
 
                   {isToOpen && (
-                    <div style={dropdownMenuStyle}>
+                    <div className='currency-dropdown-menu' style={dropdownMenuStyle}>
                       {options.map((currency) => (
                         <button
                           key={currency}
                           type='button'
+                          className={`currency-dropdown-item ${currency === to ? 'active' : ''}`}
                           onClick={() => {
                             setTo(currency)
                             setIsToOpen(false)
                           }}
-                          style={{
-                            ...dropdownItemStyle,
-                            background: currency === to ? '#e0f2fe' : 'transparent'
-                          }}
+                          style={dropdownItemStyle}
                         >
                           {currency.toUpperCase()}
                         </button>

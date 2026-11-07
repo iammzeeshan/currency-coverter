@@ -46,6 +46,53 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.currency-select {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 5.5rem;
+  border-radius: 0.7rem;
+  transition: all 0.2s ease;
+}
+
+.currency-select:hover {
+  background: rgba(37, 99, 235, 0.08);
+}
+
+.currency-dropdown-menu {
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.currency-dropdown-item {
+  display: block;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.currency-dropdown-item:hover {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.currency-dropdown-item.active {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.currency-dropdown-item.active:hover {
+  background: #1d4ed8;
+  color: #ffffff;
+}
+
+.currency-dropdown-menu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.currency-dropdown-menu::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
 /* Hide number input arrows */
 .to .from ::-webkit-inner-spin-button,
 .to .from ::-webkit-outer-spin-button {
