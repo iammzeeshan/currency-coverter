@@ -9,6 +9,8 @@ function App() {
   const [from, setFrom] = useState("usd")
   const [to, setTo] = useState("inr")
   const [convertedAmount, setConvertedAmount] = useState("")
+  const [isFromOpen, setIsFromOpen] = useState(false)
+  const [isToOpen, setIsToOpen] = useState(false)
 
   const currencyInfo = useCurrencyInfo(from)
 
@@ -65,14 +67,36 @@ function App() {
     padding: '0.35rem 2rem 0.35rem 0.5rem',
     textAlign: 'right',
     cursor: 'pointer',
-    position: 'absolute',
-    right: '0.75rem',
-    top: '50%',
-    transform: 'translateY(-50%)',
+    position: 'relative',
     zIndex: 1,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'calc(100% - 0.5rem) center',
     backgroundSize: '1rem 1rem'
+  }
+
+  const dropdownMenuStyle = {
+    position: 'absolute',
+    right: 0,
+    top: 'calc(100% + 0.35rem)',
+    width: '8rem',
+    maxHeight: '10rem',
+    overflowY: 'auto',
+    backgroundColor: '#ffffff',
+    border: '1px solid #d1d5db',
+    borderRadius: '0.75rem',
+    boxShadow: '0 12px 30px rgba(15, 23, 42, 0.12)',
+    zIndex: 20
+  }
+
+  const dropdownItemStyle = {
+    width: '100%',
+    border: 'none',
+    background: 'transparent',
+    padding: '0.5rem 0.75rem',
+    textAlign: 'left',
+    fontSize: '0.9rem',
+    color: '#111827',
+    cursor: 'pointer'
   }
 
   const inputStyle = {
@@ -124,18 +148,43 @@ function App() {
                   style={inputStyle}
                 />
 
-                <select
-                  className='currency-select'
-                  value={from}
-                  onChange={(e) => setFrom(e.target.value)}
-                  style={selectStyle}
+                <div
+                  className='currency-select-wrapper'
+                  style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
                 >
-                  {options.map((currency) => (
-                    <option key={currency} value={currency}>
-                      {currency.toUpperCase()}
-                    </option>
-                  ))}
-                </select>
+                  <button
+                    type='button'
+                    className='currency-select'
+                    onClick={() => {
+                      setIsFromOpen((prev) => !prev)
+                      setIsToOpen(false)
+                    }}
+                    style={selectStyle}
+                  >
+                    {from.toUpperCase()}
+                  </button>
+
+                  {isFromOpen && (
+                    <div style={dropdownMenuStyle}>
+                      {options.map((currency) => (
+                        <button
+                          key={currency}
+                          type='button'
+                          onClick={() => {
+                            setFrom(currency)
+                            setIsFromOpen(false)
+                          }}
+                          style={{
+                            ...dropdownItemStyle,
+                            background: currency === from ? '#e0f2fe' : 'transparent'
+                          }}
+                        >
+                          {currency.toUpperCase()}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -170,18 +219,43 @@ function App() {
                   style={inputStyle}
                 />
 
-                <select
-                  className='currency-select'
-                  value={to}
-                  onChange={(e) => setTo(e.target.value)}
-                  style={selectStyle}
+                <div
+                  className='currency-select-wrapper'
+                  style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
                 >
-                  {options.map((currency) => (
-                    <option key={currency} value={currency}>
-                      {currency.toUpperCase()}
-                    </option>
-                  ))}
-                </select>
+                  <button
+                    type='button'
+                    className='currency-select'
+                    onClick={() => {
+                      setIsToOpen((prev) => !prev)
+                      setIsFromOpen(false)
+                    }}
+                    style={selectStyle}
+                  >
+                    {to.toUpperCase()}
+                  </button>
+
+                  {isToOpen && (
+                    <div style={dropdownMenuStyle}>
+                      {options.map((currency) => (
+                        <button
+                          key={currency}
+                          type='button'
+                          onClick={() => {
+                            setTo(currency)
+                            setIsToOpen(false)
+                          }}
+                          style={{
+                            ...dropdownItemStyle,
+                            background: currency === to ? '#e0f2fe' : 'transparent'
+                          }}
+                        >
+                          {currency.toUpperCase()}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 
