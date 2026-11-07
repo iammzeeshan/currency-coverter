@@ -4,7 +4,7 @@ A React currency converter built with Vite.
 
 ## Live Demo
 
-[Play it here](https://iammzeeshan.github.io/currency-converter/) <!-- enable via Settings → Pages → Source: main branch, if not already done -->
+[Play it here](https://iammzeeshan.github.io/currency-coverter/) <!-- enable via Settings → Pages → Source: main branch, if not already done -->
 
 ## Run locally
 
